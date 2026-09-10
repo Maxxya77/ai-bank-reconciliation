@@ -31,6 +31,23 @@
     padding:32px 20px 60px;
   }
   .wrap{max-width:980px;margin:0 auto;}
+  .id-header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .id-header .name {
+    font-family:'Source Serif 4',serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .id-header .role { font-size: 12.5px; color: var(--accent); font-weight: 600; }
   header h1{
     font-family:'Source Serif 4',serif;
     font-weight:600;
@@ -128,6 +145,13 @@
   .intro-panel{border-color:var(--accent);}
   .intro-text{font-size:14.5px;line-height:1.7;margin:0 0 14px;color:var(--ink);}
   .intro-text:last-child{margin-bottom:0;}
+  .intro-label{
+    display:inline-block;font-size:11px;font-weight:700;color:#fff;
+    background:var(--accent);padding:2px 8px;border-radius:3px;margin-right:8px;
+    vertical-align:middle;
+  }
+  .limits-panel{border-color:var(--wait,#5C7A99);}
+  .limits-panel h2{color:var(--wait,#5C7A99);}
   .page-footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--muted);}
   .page-footer a{color:var(--accent);font-weight:600;text-decoration:none;}
   .page-footer a:hover{text-decoration:underline;}
@@ -150,52 +174,43 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="id-header">
+    <div>
+      <div class="name">서승현</div>
+      <div class="portfolio-link"><a href="https://Maxxya77.github.io/tax-invoice-risk-checker/" target="_blank">📁 다른 포트폴리오: 세금계산서 발급시기·매입세액공제 리스크 체크 →</a></div>
+    </div>
+    <div class="role">재무회계 담당자 지원, AI 활용 업무자동화 사례</div>
+  </div>
+
   <header>
     <h1>로컬 AI 기반 은행 · 회계원장 자동대사 시스템</h1>
-    <div class="portfolio-link"><a href="https://Maxxya77.github.io/tax-invoice-risk-checker/" target="_blank">📁 다른 포트폴리오: 세금계산서 발급시기·매입세액공제 리스크 체크 →</a></div>
     <p class="sub">Local-AI Bank Reconciliation Assistant — 회사 PC에서 로컬 AI(Ollama)와 검증 가능한 파이썬 로직으로, 매일 반복되는 은행-원장 대사 업무를 자동화하고 일일 자금 보고까지 만들어내는 프로토타입입니다.</p>
   </header>
 
   <div class="panel intro-panel">
-    <h2>왜 만들었나</h2>
+    <h2>이 도구를 만든 이유</h2>
     <p class="intro-text">
-      회사가 OpenAI 같은 외부 API 비용을 지원하지 않아도 쓸 수 있도록, API 없이 회사 PC 안에서 완결되는
-      로컬 AI 구조로 설계했습니다. SAP 같은 정식 ERP 연동이 안 된 조직에서는 담당자가 매일 은행 거래내역과
-      회계원장을 손으로 대조하며 불일치를 찾는데, 이 과정을 자동화하고 사람은 진짜 예외 건만 검토하도록
-      만들었습니다.
+      <span class="intro-label">문제</span>SAP 같은 정식 ERP 연동이 안 된 조직에서는 담당자가 매일 은행 거래내역과
+      회계원장을 손으로 대조하며 불일치를 찾는 게 반복 업무였고, 회사가 OpenAI 같은 외부 API 비용을
+      지원하지 않을 수 있다는 현실적 제약도 있었습니다.
     </p>
     <p class="intro-text">
-      설계 원칙은 단순합니다 — <b>금액 계산은 100% 검증 가능한 파이썬 로직</b>이 담당하고, AI는 컬럼 의미
-      추론처럼 판단이 필요한 곳에만 씁니다. 그리고 <b>확신이 없으면 억지로 엮지 않습니다</b>: 금액이
-      우연히 같다는 이유만으로 서로 다른 거래(예: AWS 10만원과 무관한 Apple 10만원)를 매칭시키지 않고,
-      적요·거래처가 실제로 일치하거나 여러 건의 합계가 정확히 맞아떨어질 때만 자동으로 연결합니다.
+      <span class="intro-label">과정</span>그래서 API 없이 회사 PC 안에서 완결되는 로컬 AI 구조로 설계했습니다.
+      <b>금액 계산은 100% 검증 가능한 파이썬 로직</b>이 담당하고, AI는 컬럼 의미 추론처럼 판단이 필요한 곳에만
+      쓰며, <b>확신이 없으면 억지로 엮지 않는다</b>는 원칙을 세웠습니다 — 금액이 우연히 같다는 이유만으로
+      서로 다른 거래(예: AWS 10만원과 무관한 Apple 10만원)를 매칭시키지 않고, 적요·거래처가 실제로 일치하거나
+      여러 건의 합계가 정확히 맞아떨어질 때만 자동으로 연결합니다.
     </p>
     <p class="intro-text">
-      한 번에 완성된 게 아니라, 실제로 돌려보며 여러 차례 결함을 찾아 고친 과정을 거쳤습니다
-      (금액 임계값 버그, 입금/출금 방향 오류, 원금+수수료 분할 매칭, 처리 순서 편향 등) —
+      <span class="intro-label">결과</span>한 번에 완성된 게 아니라, 실제로 돌려보며 여러 차례 결함을 찾아 고친
+      과정을 거쳤습니다 (금액 임계값 버그, 입금/출금 방향 오류, 원금+수수료 분할 매칭, 처리 순서 편향 등) —
       자세한 개발 과정은 하단 GitHub 저장소의 README에 정리해두었습니다.
     </p>
-    <p class="intro-text">아래에서 2계좌 샘플 데이터로 직접 체험해보실 수 있습니다 — 파일은 브라우저 안에서만 처리되고 서버로 전송되지 않습니다.</p>
+    <p class="intro-text" style="margin-top:14px;">아래에서 2계좌 샘플 데이터로 직접 체험해보실 수 있습니다 — 파일은 브라우저 안에서만 처리되고 서버로 전송되지 않습니다.</p>
     <p class="intro-text" style="margin-top:14px;">
       <b>전체 소스코드(app.py)와 실행 방법은 GitHub에서 확인하실 수 있습니다:</b>
       <a href="https://github.com/Maxxya77/ai-bank-reconciliation" target="_blank" style="color:var(--accent);font-weight:600;">GitHub 저장소 바로가기 →</a>
     </p>
-  </div>
-
-  <div class="panel">
-    <h2>이 미리보기 vs 실제 앱(app.py)</h2>
-    <table>
-      <thead><tr><th></th><th>이 페이지 (브라우저 미리보기)</th><th>실제 app.py</th></tr></thead>
-      <tbody>
-        <tr><td>실행 환경</td><td>브라우저만 있으면 됨, 설치 불필요</td><td>Python + Ollama 설치 필요</td></tr>
-        <tr><td>컬럼 매핑</td><td>규칙 기반(키워드 매칭)만 동작</td><td>Ollama 연결 시 로컬 AI가 자동 매핑</td></tr>
-        <tr><td>대사 로직</td><td>동일 (같은 코드를 JS로 이식)</td><td>동일</td></tr>
-        <tr><td>"확인완료" 저장</td><td>없음 — 새로고침하면 초기화</td><td>SQLite(reviewed.db)에 영구 저장</td></tr>
-        <tr><td>AI 예외 원인 분석</td><td>없음</td><td>Ollama 연결 시 버튼으로 실행</td></tr>
-        <tr><td>엑셀 다운로드</td><td>동일 (서식·수식 포함)</td><td>동일</td></tr>
-      </tbody>
-    </table>
-    <p class="note" style="border-top:none;padding-top:12px;">즉 이 페이지는 "핵심 대사 로직이 실제로 잘 작동하는지"를 설치 없이 확인하는 용도이고, 로컬 AI 연동·데이터 영구 저장까지 포함한 전체 기능은 실제 컴퓨터에서 app.py를 실행해야 확인할 수 있습니다.</p>
   </div>
 
   <div class="panel">
@@ -243,6 +258,45 @@
   </div>
 
   <div id="resultsWrap"></div>
+
+  <div class="panel limits-panel">
+    <h2>지금 버전의 한계와 다음 단계</h2>
+    <p class="intro-text">
+      담당자 한 명이 매일 파일을 업로드해서 확인하는 구조라, 별도 서버 없이 <b>파이썬 스크립트 + 로컬 AI</b>로
+      완결되도록 만들었습니다. 여러 담당자가 같은 데이터를 함께 봐야 하거나 자동으로 매일 실행되어야 한다면
+      회사가 이미 쓰는 ERP·회계 시스템에 이 로직을 기능으로 얹는 형태가 되어야 하는데, 그 순간부터는 별도
+      서버·배포·보안 검토가 필요한 사내 시스템 개발 영역이라 지금 범위에서는 과한 설계라고 판단해 제외했습니다.
+    </p>
+    <p class="intro-text">
+      그룹(1:N/N:1) 매칭은 조합 폭발을 막기 위해 후보 풀을 날짜창(±7일) 내 최대 10건, 그룹 크기는 최대 4건까지만
+      시도합니다 — 거래량이 매우 많은 환경에서는 이 범위를 넘는 조합을 못 잡을 수 있습니다.
+    </p>
+    <p class="intro-text">
+      자리바꿈(전위) 오류 힌트는 "차액이 9의 배수"라는 통계적 휴리스틱이라, 확정 진단이 아니라 우선순위를
+      매기기 위한 힌트입니다 (무관한 두 금액도 우연히 9의 배수 차이가 날 확률이 있습니다).
+    </p>
+    <p class="intro-text">
+      컬럼 매핑은 규칙 기반 키워드 매칭이라, 은행마다 다른 표현(예: "출금액" 대신 "찾으신금액")이나 표 위에
+      제목·기간 안내줄이 몇 줄 껴 있는 경우 실패할 수 있습니다. 실제 회사 파일을 처음 넣어볼 땐 "컬럼 매핑
+      결과"를 먼저 확인하는 걸 권장합니다.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h2>이 미리보기 vs 실제 앱(app.py)</h2>
+    <table>
+      <thead><tr><th></th><th>이 페이지 (브라우저 미리보기)</th><th>실제 app.py</th></tr></thead>
+      <tbody>
+        <tr><td>실행 환경</td><td>브라우저만 있으면 됨, 설치 불필요</td><td>Python + Ollama 설치 필요</td></tr>
+        <tr><td>컬럼 매핑</td><td>규칙 기반(키워드 매칭)만 동작</td><td>Ollama 연결 시 로컬 AI가 자동 매핑</td></tr>
+        <tr><td>대사 로직</td><td>동일 (같은 코드를 JS로 이식)</td><td>동일</td></tr>
+        <tr><td>"확인완료" 저장</td><td>없음 — 새로고침하면 초기화</td><td>SQLite(reviewed.db)에 영구 저장</td></tr>
+        <tr><td>AI 예외 원인 분석</td><td>없음</td><td>Ollama 연결 시 버튼으로 실행</td></tr>
+        <tr><td>엑셀 다운로드</td><td>동일 (서식·수식 포함)</td><td>동일</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="border-top:none;padding-top:12px;">즉 이 페이지는 "핵심 대사 로직이 실제로 잘 작동하는지"를 설치 없이 확인하는 용도이고, 로컬 AI 연동·데이터 영구 저장까지 포함한 전체 기능은 실제 컴퓨터에서 app.py를 실행해야 확인할 수 있습니다.</p>
+  </div>
 
   <footer class="page-footer">
     <p>전체 소스코드, 실행 방법, 설계 배경은 GitHub에서 확인하실 수 있습니다:
