@@ -449,7 +449,7 @@ if "per_account" in st.session_state:
             for row in rows:
                 bdesc=", ".join(b.loc[i,"description"] for i in row["bank_idx"]) if row["bank_idx"] else ""
                 ldesc=", ".join(l.loc[i,"description"] for i in row["ledger_idx"]) if row["ledger_idx"] else ""
-                jvno=", ".join(str(l.loc[i,"journal_id"]) for i in row["ledger_idx"] if l.loc[i,"journal_id"]) if row["ledger_idx"] else ""
+                jvno=", ".join(dict.fromkeys(str(l.loc[i,"journal_id"]) for i in row["ledger_idx"] if l.loc[i,"journal_id"])) if row["ledger_idx"] else ""
                 key=row_key(name,row,b,l)
                 out.append({"status":row["status"],"bank":bdesc,"ledger":ldesc,"전표번호":jvno,"date_diff_days":row["days"],
                             "amount_diff":row["diff"],"의심 유형":row["hint"],
@@ -470,7 +470,7 @@ if "per_account" in st.session_state:
                     for i,row in unresolved:
                         bdesc=", ".join(b.loc[j,"description"] for j in row["bank_idx"]) if row["bank_idx"] else "-"
                         ldesc=", ".join(l.loc[j,"description"] for j in row["ledger_idx"]) if row["ledger_idx"] else "-"
-                        jvno=", ".join(str(l.loc[j,"journal_id"]) for j in row["ledger_idx"] if l.loc[j,"journal_id"]) if row["ledger_idx"] else ""
+                        jvno=", ".join(dict.fromkeys(str(l.loc[j,"journal_id"]) for j in row["ledger_idx"] if l.loc[j,"journal_id"])) if row["ledger_idx"] else ""
                         st.write(f"**{row['status']}** — 은행: {bdesc} / 원장: {ldesc}" + (f" (전표번호: {jvno})" if jvno else ""))
                         note=st.text_input("확인 사유",key=f"note_{name}_{i}")
                         if st.button("확인완료로 표시",key=f"btn_{name}_{i}"):
