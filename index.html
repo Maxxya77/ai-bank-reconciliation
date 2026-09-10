@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>은행·회계원장 자동대사 미리보기</title>
+<title>은행 및 회계원장 자동대사 미리보기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -177,13 +177,13 @@
   <div class="id-header">
     <div>
       <div class="name">서승현</div>
-      <div class="portfolio-link"><a href="https://Maxxya77.github.io/tax-invoice-risk-checker/" target="_blank">📁 다른 포트폴리오: 세금계산서 발급시기·매입세액공제 리스크 체크 →</a></div>
+      <div class="portfolio-link"><a href="https://Maxxya77.github.io/tax-invoice-risk-checker/" target="_blank">📁 다른 포트폴리오: 세금계산서 발급시기 및 매입세액공제 리스크 체크 →</a></div>
     </div>
     <div class="role">재무회계 담당자 지원, AI 활용 업무자동화 사례</div>
   </div>
 
   <header>
-    <h1>로컬 AI 기반 은행 · 회계원장 자동대사 시스템</h1>
+    <h1>로컬 AI 기반 은행 및 회계원장 자동대사 시스템</h1>
     <p class="sub">Local-AI Bank Reconciliation Assistant — 회사 PC에서 로컬 AI(Ollama)와 검증 가능한 파이썬 로직으로, 매일 반복되는 은행-원장 대사 업무를 자동화하고 일일 자금 보고까지 만들어내는 프로토타입입니다.</p>
   </header>
 
@@ -198,7 +198,7 @@
       <span class="intro-label">과정</span>그래서 API 없이 회사 PC 안에서 완결되는 로컬 AI 구조로 설계했습니다.
       <b>금액 계산은 100% 검증 가능한 파이썬 로직</b>이 담당하고, AI는 컬럼 의미 추론처럼 판단이 필요한 곳에만
       쓰며, <b>확신이 없으면 억지로 엮지 않는다</b>는 원칙을 세웠습니다 — 금액이 우연히 같다는 이유만으로
-      서로 다른 거래(예: AWS 10만원과 무관한 Apple 10만원)를 매칭시키지 않고, 적요·거래처가 실제로 일치하거나
+      서로 다른 거래(예: AWS 10만원과 무관한 Apple 10만원)를 매칭시키지 않고, 적요 및 거래처가 실제로 일치하거나
       여러 건의 합계가 정확히 맞아떨어질 때만 자동으로 연결합니다.
     </p>
     <p class="intro-text">
@@ -243,7 +243,7 @@
       <button id="runBtn" disabled>대사 실행</button>
     </div>
     <div class="bug-note" id="bugNote">
-      🐛 v1.0 로직 선택됨: 금액이 조금이라도 다르면 매칭 후보에서 아예 제외되고, 그룹(분할·합산) 매칭도 지원하지 않습니다. 그래서 Notion 1:N 분할 지급이나 법인카드 N:1 합산 지급 건이 서로 무관한 예외로 쪼개져 표시돼요.
+      🐛 v1.0 로직 선택됨: 금액이 조금이라도 다르면 매칭 후보에서 아예 제외되고, 그룹(분할, 합산) 매칭도 지원하지 않습니다. 그래서 Notion 1:N 분할 지급이나 법인카드 N:1 합산 지급 건이 서로 무관한 예외로 쪼개져 표시돼요.
     </div>
     <div class="note">
       컬럼 매핑은 이 미리보기에서는 규칙 기반(app.py의 <code>heuristic()</code>)으로만 동작합니다. 실제 앱은 Ollama가 연결되면 컬럼명이 표준과 달라도 로컬 AI가 알아서 매핑해줘요 — 그 부분은 각자 PC에 Ollama를 설치해야 확인할 수 있어요.
@@ -264,12 +264,12 @@
     <p class="intro-text">
       담당자 한 명이 매일 파일을 업로드해서 확인하는 구조라, 별도 서버 없이 <b>파이썬 스크립트 + 로컬 AI</b>로
       완결되도록 만들었습니다. 여러 담당자가 같은 데이터를 함께 봐야 하거나 자동으로 매일 실행되어야 한다면
-      회사가 이미 쓰는 ERP·회계 시스템에 이 로직을 기능으로 얹는 형태가 되어야 하는데, 그 순간부터는 별도
-      서버·배포·보안 검토가 필요한 사내 시스템 개발 영역이라 지금 범위에서는 과한 설계라고 판단해 제외했습니다.
+      회사가 이미 쓰는 ERP, 회계 시스템에 이 로직을 기능으로 얹는 형태가 되어야 하는데, 그 순간부터는 별도
+      서버, 배포, 보안 검토가 필요한 사내 시스템 개발 영역이라 지금 범위에서는 과한 설계라고 판단해 제외했습니다.
     </p>
     <p class="intro-text">
       그룹(1:N/N:1) 매칭은 조합 폭발을 막기 위해 후보 풀을 날짜창(±7일) 내 최대 10건, 그룹 크기는 최대 4건까지만
-      시도합니다 — 거래량이 매우 많은 환경에서는 이 범위를 넘는 조합을 못 잡을 수 있습니다.
+      시도합니다 — 거래량이 매우 많은 환경에서는 날짜창과 그룹 크기 상한을 조직의 거래 규모에 맞게 조정해야 합니다.
     </p>
     <p class="intro-text">
       자리바꿈(전위) 오류 힌트는 "차액이 9의 배수"라는 통계적 휴리스틱이라, 확정 진단이 아니라 우선순위를
@@ -277,8 +277,26 @@
     </p>
     <p class="intro-text">
       컬럼 매핑은 규칙 기반 키워드 매칭이라, 은행마다 다른 표현(예: "출금액" 대신 "찾으신금액")이나 표 위에
-      제목·기간 안내줄이 몇 줄 껴 있는 경우 실패할 수 있습니다. 실제 회사 파일을 처음 넣어볼 땐 "컬럼 매핑
+      제목, 기간 안내줄이 몇 줄 껴 있는 경우 실패할 수 있습니다. 실제 회사 파일을 처음 넣어볼 땐 "컬럼 매핑
       결과"를 먼저 확인하는 걸 권장합니다.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h2>이 프로젝트가 보여드리고 싶은 것</h2>
+    <p class="intro-text">
+      <span class="intro-label">예상 효과</span>실제로 도입해서 측정해본 결과는 아니지만, 합리적으로
+      가정해보면 이렇습니다 — 하루 100~150건 규모의 거래를 처리하는 조직이라면, 사람이 하나하나
+      대조하는 데 보통 20~30분 정도가 들어갑니다(자리바꿈 오타처럼 미묘한 오류는 사람이 놓치기도
+      쉽고요). 이 도구를 쓰면 계산 자체는 몇 초 만에 끝나고, 사람은 자동으로 걸러진 예외 건
+      (보통 전체의 5~10% 수준)만 검토하면 됩니다.
+    </p>
+    <p class="intro-text">
+      다만 위 수치는 정확한 측정치가 아니라 방향성을 제시하기 위한 가정임을 밝힙니다. 또한 이 프로젝트는
+      특정 도구의 도입 자체를 제안하려는 것이 아닙니다 — 조직마다 은행, 회계 시스템과 업무 프로세스의
+      형태가 다르므로, 실제 업무에 적용한다면 해당 조직의 환경에 맞춘 형태의 자동화가 필요할 것으로
+      판단합니다. 이 프로젝트를 통해 보여드리고자 하는 것은 특정 도구 자체가 아니라, <b>반복되는
+      비효율을 발견했을 때 이를 방치하지 않고 AI를 활용해 직접 해결책을 설계하고 검증하는 태도</b>입니다.
     </p>
   </div>
 
@@ -292,17 +310,17 @@
         <tr><td>대사 로직</td><td>동일 (같은 코드를 JS로 이식)</td><td>동일</td></tr>
         <tr><td>"확인완료" 저장</td><td>없음 — 새로고침하면 초기화</td><td>SQLite(reviewed.db)에 영구 저장</td></tr>
         <tr><td>AI 예외 원인 분석</td><td>없음</td><td>Ollama 연결 시 버튼으로 실행</td></tr>
-        <tr><td>엑셀 다운로드</td><td>동일 (서식·수식 포함)</td><td>동일</td></tr>
+        <tr><td>엑셀 다운로드</td><td>동일 (서식, 수식 포함)</td><td>동일</td></tr>
       </tbody>
     </table>
-    <p class="note" style="border-top:none;padding-top:12px;">즉 이 페이지는 "핵심 대사 로직이 실제로 잘 작동하는지"를 설치 없이 확인하는 용도이고, 로컬 AI 연동·데이터 영구 저장까지 포함한 전체 기능은 실제 컴퓨터에서 app.py를 실행해야 확인할 수 있습니다.</p>
+    <p class="note" style="border-top:none;padding-top:12px;">즉 이 페이지는 "핵심 대사 로직이 실제로 잘 작동하는지"를 설치 없이 확인하는 용도이고, 로컬 AI 연동, 데이터 영구 저장까지 포함한 전체 기능은 실제 컴퓨터에서 app.py를 실행해야 확인할 수 있습니다.</p>
   </div>
 
   <footer class="page-footer">
     <p>전체 소스코드, 실행 방법, 설계 배경은 GitHub에서 확인하실 수 있습니다:
       <a href="https://github.com/Maxxya77/ai-bank-reconciliation" target="_blank">GitHub 저장소 바로가기</a>
     </p>
-    <p class="stack">Python · pandas · Streamlit · Ollama(로컬 LLM) · openpyxl</p>
+    <p class="stack">Python, pandas, Streamlit, Ollama(로컬 LLM), openpyxl</p>
   </footer>
 </div>
 
@@ -506,7 +524,7 @@ function reconcileFixed(bank,ledger){
     const x=bank[c.bi],y=ledger[c.li];
     const diff=Math.abs(x.signed)-Math.abs(y.signed);
     let status,hint;
-    if(Math.abs(diff)<.01){status="입금/출금 방향 오류 의심";hint="금액은 일치하나 입금·출금 방향이 반대로 기표된 것으로 보임";}
+    if(Math.abs(diff)<.01){status="입금/출금 방향 오류 의심";hint="금액은 일치하나 입금, 출금 방향이 반대로 기표된 것으로 보임";}
     else{status="AMOUNT MISMATCH";hint=guessErrorType(Math.abs(x.signed),Math.abs(y.signed));}
     rows.push({status,bankIdx:[c.bi],ledgerIdx:[c.li],days:c.days,diff,hint});
   });
@@ -730,7 +748,7 @@ function renderReport(accounts,snapshots,detailRows){
   html+="</div>";
   html+=`<div class="status-cards">
     <div class="stat"><div class="num">${matchedCnt}건</div><div class="label">확정(정상 매칭)</div></div>
-    <div class="stat exception"><div class="num">${unresolvedRows.length}건</div><div class="label">미결(확인 필요) · ${fmt(unresolvedAmt)}원</div></div>
+    <div class="stat exception"><div class="num">${unresolvedRows.length}건</div><div class="label">미결(확인 필요), ${fmt(unresolvedAmt)}원</div></div>
   </div>
   <button id="excelBtn">📥 일일 자금 보고 엑셀 다운로드</button>
   <p style="font-size:12px;color:var(--muted);margin-top:8px;">브라우저 안에서 바로 생성됩니다 (서버 전송 없음). "요약" 시트의 합계는 하드코딩이 아니라 =SUM() 수식입니다. 실제 app.py에서는 "확인완료" 처리 결과가 SQLite에 저장돼 미결에서 제외되지만, 이 브라우저 데모는 그 저장 기능은 포함하지 않습니다.</p>`;
